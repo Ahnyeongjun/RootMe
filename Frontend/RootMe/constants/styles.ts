@@ -12,17 +12,17 @@ export const Colors = {
   primary: '#33b2e5',
   primaryDark: '#1a80b2',
   primaryLight: '#197fe5',
-  
+
   // 서브 컬러
   secondary: '#407fe3',
   secondaryLight: '#4080e3',
-  
+
   // 상태 컬러
   success: '#33b24f',
   warning: '#ffab1a',
   error: '#ff334d',
   info: '#3380e3',
-  
+
   // 텍스트 컬러
   textPrimary: '#333333',
   textSecondary: '#666666',
@@ -30,21 +30,21 @@ export const Colors = {
   textDisabled: '#cccccc',
   textWhite: '#ffffff',
   textBlack: '#000000',
-  
+
   // 배경 컬러
   background: '#ffffff',
   backgroundSecondary: '#f7f7fa',
   backgroundTertiary: '#f2f2f2',
-  
+
   // 컴포넌트 컬러
   border: '#e6e6e6',
   borderLight: '#f2f2f2',
   shadow: '#000000',
-  
+
   // 투명도
   overlay: 'rgba(0, 0, 0, 0.5)',
   overlayLight: 'rgba(0, 0, 0, 0.3)',
-  
+
   // 카테고리별 컬러
   food: {
     korean: '#ff6699',
@@ -53,13 +53,13 @@ export const Colors = {
     western: '#e5b266',
     other: '#9980cc',
   },
-  
+
   // 평점 컬러
   rating: '#ffb21a',
-  
+
   // 실시간 컬러
   live: '#ff334d',
-  
+
   // 소셜 로그인 컬러
   kakao: '#ffeb00',
   google: '#4285f4',
@@ -154,13 +154,13 @@ export const Layout = {
   statusBarHeight: 44,
   screenPadding: 20,
   cardPadding: 16,
-  
+
   // 컴포넌트 크기
   buttonHeight: 48,
   inputHeight: 40,
   searchBarHeight: 40,
   categoryTabHeight: 36,
-  
+
   // 아이콘 크기
   iconSmall: 16,
   iconMedium: 24,
@@ -203,7 +203,7 @@ export const CommonStyles = {
     justifyContent: 'space-between' as const,
     alignItems: 'center' as const,
   },
-  
+
   // 텍스트 스타일
   textCenter: {
     textAlign: 'center' as const,
@@ -214,14 +214,14 @@ export const CommonStyles = {
   textSemiBold: {
     fontWeight: FontWeights.semiBold,
   },
-  
+
   // 여백
   noMargin: { margin: 0 },
   noPadding: { padding: 0 },
   screenPadding: {
     paddingHorizontal: Layout.screenPadding,
   },
-  
+
   // 보더
   borderTop: {
     borderTopWidth: 1,
@@ -231,7 +231,7 @@ export const CommonStyles = {
     borderBottomWidth: 1,
     borderBottomColor: Colors.border,
   },
-  
+
   // 카드 스타일
   card: {
     backgroundColor: Colors.background,
@@ -239,7 +239,7 @@ export const CommonStyles = {
     padding: Layout.cardPadding,
     ...Shadows.medium,
   },
-  
+
   // 버튼 스타일
   button: {
     height: Layout.buttonHeight,
@@ -247,7 +247,7 @@ export const CommonStyles = {
     justifyContent: 'center' as const,
     alignItems: 'center' as const,
   },
-  
+
   // 입력 필드 스타일
   input: {
     height: Layout.inputHeight,
@@ -259,40 +259,32 @@ export const CommonStyles = {
   },
 } as const;
 
-// 다크 테마 색상 (향후 다크 모드 지원용)
-export const DarkColors = {
-  ...Colors,
-  background: '#1a1a1a',
-  backgroundSecondary: '#2d2d2d',
-  backgroundTertiary: '#404040',
-  textPrimary: '#ffffff',
-  textSecondary: '#cccccc',
-  textTertiary: '#999999',
-  border: '#404040',
-  borderLight: '#2d2d2d',
-} as const;
 
 // 반응형 유틸리티
 export const Responsive = {
   isSmallScreen: width < 375,
   isMediumScreen: width >= 375 && width < 414,
   isLargeScreen: width >= 414,
-  
+
   // 반응형 값 계산
   scale: (size: number) => {
     const baseWidth = 375; // iPhone X 기준
     return (width / baseWidth) * size;
   },
-  
+
   // 반응형 폰트 크기
   fontSize: (size: number) => {
     return Math.min(Responsive.scale(size), size * 1.2);
   },
 } as const;
 
-// 테마 인터페이스
+
+export interface ColorTheme {
+  [key: string]: string | { [key: string]: string };
+}
+
 export interface Theme {
-  colors: typeof Colors;
+  colors: ColorTheme;
   fontSizes: typeof FontSizes;
   fontWeights: typeof FontWeights;
   spacing: typeof Spacing;
@@ -301,7 +293,15 @@ export interface Theme {
   layout: typeof Layout;
 }
 
-// 기본 테마
+
+// 다크 테마 색상
+export const DarkColors: ColorTheme = {
+  ...Colors,
+  background: '#1a1a1a',
+  textPrimary: '#ffffff',
+};
+
+// 테마 객체
 export const defaultTheme: Theme = {
   colors: Colors,
   fontSizes: FontSizes,
@@ -312,7 +312,6 @@ export const defaultTheme: Theme = {
   layout: Layout,
 };
 
-// 다크 테마
 export const darkTheme: Theme = {
   ...defaultTheme,
   colors: DarkColors,

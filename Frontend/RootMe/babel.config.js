@@ -5,10 +5,10 @@ module.exports = function (api) {
     plugins: [
       // Required for expo-router
       require.resolve('expo-router/babel'),
-      
+
       // React Native Reanimated plugin (if using animations)
       'react-native-reanimated/plugin',
-      
+
       // Module resolver for path mapping
       [
         'module-resolver',
@@ -16,6 +16,7 @@ module.exports = function (api) {
           root: ['./'],
           alias: {
             '@': './',
+            '@screens': './screens',
             '@/components': './components',
             '@/types': './types',
             '@/utils': './utils',
