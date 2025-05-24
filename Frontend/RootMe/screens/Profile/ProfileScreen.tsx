@@ -15,7 +15,7 @@ import {
   StatsSection,
   SettingsSection,
   WithdrawSection,
-} from '../../components/profile/ProfileComponents';
+} from '../../components/profile';
 import { profileStyles } from '../../styles/profileStyles';
 
 export default function ProfileScreen() {

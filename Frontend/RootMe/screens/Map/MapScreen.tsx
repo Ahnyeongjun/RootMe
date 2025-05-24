@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { StatusBarComponent, SearchHeader, CategoryTabs, TabBar } from '../../components/common';
-import { MapArea, BottomSheet } from '../../components/map/MapComponents';
+import { MapArea, BottomSheet } from '../../components/map';
 import { mapStyles } from '../../styles/mapStyles';
 
 interface RestaurantItem {

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'expo-router';
 import { useApp } from '../../contexts/AppContext';
-import { SplashContent } from '../../components/splash/SplashComponents';
+import { SplashContent } from '../../components/splash';
 
 export default function SplashScreen() {
   const router = useRouter();

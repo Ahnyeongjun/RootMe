@@ -16,7 +16,7 @@ import {
   BannerSection, 
   RecommendedSection, 
   NearbyRestaurantsSection 
-} from '../../components/home/HomeComponents';
+} from '../../components/home';
 import { homeStyles } from '../../styles/homeStyles';
 
 interface FoodItem {

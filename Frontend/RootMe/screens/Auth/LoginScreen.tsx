@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useApp } from '../../contexts/AppContext';
-import { StatusBarDisplay, HeroSection, LoginSection } from '../../components/auth/LoginComponents';
+import { StatusBarDisplay, HeroSection, LoginSection } from '../../components/auth';
 import { loginStyles } from '../../styles/loginStyles';
 
 export default function LoginScreen() {
