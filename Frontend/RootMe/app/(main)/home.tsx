@@ -70,22 +70,8 @@ export default function HomeScreen() {
     router.push(`/restaurant/${restaurant.id}`);
   };
 
-  const handleTabPress = (tab: string) => {
-    switch (tab) {
-      case '지도':
-        router.push('/map');
-        break;
-      case '마이':
-        router.push('/profile');
-        break;
-      default:
-        break;
-    }
-  };
-
-  const handleClosePress = () => {
-    // 검색 헤더 닫기 로직
-    console.log('검색 헤더 닫기');
+  const handleSearchPress = () => {
+    console.log('검색 헤더 검색');
   };
 
   return (
@@ -93,7 +79,7 @@ export default function HomeScreen() {
       <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
 
       <StatusBarComponent />
-      <SearchHeader onClosePress={handleClosePress} />
+      <SearchHeader onSearchPress={handleSearchPress} />
 
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         <CategoryTabs
@@ -119,7 +105,7 @@ export default function HomeScreen() {
         />
       </ScrollView>
 
-      <TabBar selectedTab="홈" onTabPress={handleTabPress} />
+      <TabBar selectedTab="홈" />
     </SafeAreaView>
   );
 }

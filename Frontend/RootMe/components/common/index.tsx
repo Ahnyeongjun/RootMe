@@ -1,3 +1,4 @@
+import { useRouter } from 'expo-router';
 import React from 'react';
 import {
   View,
@@ -41,12 +42,12 @@ const statusBarStyles = StyleSheet.create({
 // 검색 헤더 컴포넌트
 interface SearchHeaderProps {
   placeholder?: string;
-  onClosePress?: () => void;
+  onSearchPress?: () => void;
 }
 
 export const SearchHeader: React.FC<SearchHeaderProps> = ({
   placeholder = "음식점",
-  onClosePress
+  onSearchPress
 }) => (
   <View style={searchHeaderStyles.container}>
     <View style={searchHeaderStyles.searchBar}>
@@ -56,8 +57,8 @@ export const SearchHeader: React.FC<SearchHeaderProps> = ({
         placeholderTextColor="#666666"
       />
     </View>
-    <TouchableOpacity style={searchHeaderStyles.closeButton} onPress={onClosePress}>
-      <Text style={searchHeaderStyles.closeText}>닫기</Text>
+    <TouchableOpacity style={searchHeaderStyles.searchButton} onPress={onSearchPress}>
+      <Text style={searchHeaderStyles.searchText}>검색</Text>
     </TouchableOpacity>
   </View>
 );
@@ -84,14 +85,14 @@ const searchHeaderStyles = StyleSheet.create({
     fontWeight: '500',
     color: '#666666',
   },
-  closeButton: {
+  searchButton: {
     backgroundColor: '#3380e3',
     borderRadius: 8,
     paddingHorizontal: 15,
     height: 40,
     justifyContent: 'center',
   },
-  closeText: {
+  searchText: {
     fontSize: 14,
     fontWeight: '700',
     color: '#ffffff',
@@ -337,10 +338,25 @@ const restaurantStyles = StyleSheet.create({
 // 하단 탭 바 컴포넌트
 interface TabBarProps {
   selectedTab: string;
-  onTabPress: (tab: string) => void;
 }
 
-export const TabBar: React.FC<TabBarProps> = ({ selectedTab, onTabPress }) => {
+export const TabBar: React.FC<TabBarProps> = ({ selectedTab }) => {
+  const router = useRouter();
+  const handleTabPress = (tab: string) => {
+    switch (tab) {
+      case '홈':
+        router.push('/home');
+        break;
+      case '지도':
+        router.push('/map');
+        break;
+      case '마이':
+        router.push('/profile');
+        break;
+      default:
+        break;
+    }
+  };
   const tabs = [
     { key: '홈', label: '홈' },
     { key: '지도', label: '지도' },
@@ -355,7 +371,7 @@ export const TabBar: React.FC<TabBarProps> = ({ selectedTab, onTabPress }) => {
         <TouchableOpacity
           key={tab.key}
           style={tabBarStyles.tab}
-          onPress={() => onTabPress(tab.key)}
+          onPress={() => handleTabPress(tab.key)}
         >
           <View
             style={[

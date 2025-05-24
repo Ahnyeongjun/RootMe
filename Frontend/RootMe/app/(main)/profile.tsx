@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useApp } from '../../contexts/AppContext';
-import { StatusBarComponent } from '../../components/common';
+import { StatusBarComponent, TabBar } from '../../components/common';
 
 interface MenuItemProps {
   icon: string;
@@ -38,9 +38,9 @@ export default function ProfileScreen() {
       '정말로 로그아웃하시겠습니까?',
       [
         { text: '취소', style: 'cancel' },
-        { 
-          text: '로그아웃', 
-          style: 'destructive', 
+        {
+          text: '로그아웃',
+          style: 'destructive',
           onPress: async () => {
             try {
               await logout();
@@ -96,7 +96,7 @@ export default function ProfileScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
-      
+
       <StatusBarComponent />
 
       {/* 헤더 */}
@@ -126,6 +126,8 @@ export default function ProfileScreen() {
         {/* 회원 탈퇴 */}
         <WithdrawSection onWithdraw={handleWithdraw} />
       </ScrollView>
+      <TabBar selectedTab="마이" />
+
     </SafeAreaView>
   );
 }
@@ -167,7 +169,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ onProfileEdit }) => (
         </View>
       </View>
       <TouchableOpacity onPress={onProfileEdit}>
-        <Text style={styles.editArrow}>></Text>
+        <Text style={styles.editArrow}></Text>
       </TouchableOpacity>
     </View>
   </View>
@@ -245,7 +247,7 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
 const SettingItem: React.FC<SettingItemProps> = ({ title, onPress }) => (
   <TouchableOpacity style={styles.settingItem} onPress={onPress}>
     <Text style={styles.settingText}>{title}</Text>
-    <Text style={styles.settingArrow}>></Text>
+    <Text style={styles.settingArrow}></Text>
   </TouchableOpacity>
 );
 

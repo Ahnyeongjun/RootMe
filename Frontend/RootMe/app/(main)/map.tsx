@@ -10,7 +10,7 @@ import {
   Dimensions,
 } from 'react-native';
 import { useRouter } from 'expo-router';
-import { StatusBarComponent, SearchHeader, CategoryTabs } from '../../components/common';
+import { StatusBarComponent, SearchHeader, CategoryTabs, TabBar } from '../../components/common';
 
 const { width, height } = Dimensions.get('window');
 
@@ -64,8 +64,8 @@ export default function MapScreen() {
     router.push(`/restaurant/${restaurantId}`);
   };
 
-  const handleBackPress = () => {
-    router.back();
+  const handleSearchPress = () => {
+    console.log('검색 헤더 검색');
   };
 
   return (
@@ -73,7 +73,7 @@ export default function MapScreen() {
       <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
 
       <StatusBarComponent />
-      <SearchHeader onClosePress={handleBackPress} />
+      <SearchHeader onSearchPress={handleSearchPress} />
 
       <CategoryTabs
         categories={categories.slice(0, 2)}
@@ -92,6 +92,7 @@ export default function MapScreen() {
         restaurants={restaurants}
         onRestaurantPress={handleRestaurantPress}
       />
+      <TabBar selectedTab="지도" />
     </SafeAreaView>
   );
 }
