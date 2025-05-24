@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "babel-plugin-module-resolver": "^5.0.2"
+  },
+  "dependencies": {
+    "expo-router": "^5.0.7",
+    "react-native-reanimated": "^3.17.5"
+  }
+}
