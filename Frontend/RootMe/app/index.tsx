@@ -1,5 +1,3 @@
-import SplashScreen from '@/screens/SplashScreen';
+import SplashScreen from '../screens/Splash/SplashScreen';
 
-export default function IndexRoute() {
-  return <SplashScreen />;
-}
+export default SplashScreen;
